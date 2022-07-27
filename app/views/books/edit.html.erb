@@ -1,0 +1,41 @@
+<div class="body">
+
+    <div class="flash"><%= flash[:notice] %></div>
+
+    <div class ="page-title">
+    <h1>Editing Book</h1>
+    </div>
+
+    <% if @book.errors.any? %>
+    <%= @book.errors.count %>errors
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <%= form_with model: @book,url: book_path(@book.id), method: :patch do |f| %>
+
+      <div class="box">
+      <h4>Title</h4>
+      <div class="box"><%= f.text_field :title %></div>
+      </div>
+
+      <div class="box">
+      <h4>Body</h4>
+      <div class="box"><%= f.text_area :body %></div>
+      </div>
+
+      <div class="box">
+      <div class="button">
+      <%= f.submit 'Update Book' %>
+      </div>
+      </div>
+
+      <% end %>
+
+  <%= link_to "Show", book_path(@book.id) %> |
+  <%= link_to "Back", books_path %>
+
+</div>
